@@ -1,0 +1,60 @@
+# Django and Django REST framework
+Django==5.1.7
+djangorestframework==3.15.2
+djangorestframework-simplejwt==5.5.0
+django-cors-headers==4.7.0
+django-filter==24.1
+
+# Database
+psycopg2-binary==2.9.9
+
+# Image Processing
+Pillow==10.2.0
+
+# Date/Time handling
+python-dateutil==2.8.2
+pytz==2024.1
+
+# Email handling
+django-anymail==10.3
+
+# File handling
+python-magic==0.4.27
+
+# Security
+django-environ==0.11.2
+django-otp==1.3.0
+qrcode==7.4.2
+
+# Background Tasks
+celery==5.3.6
+redis==5.0.2
+django-celery-beat==2.6.0
+django-celery-results==2.5.1
+
+# API Documentation
+drf-yasg==1.21.7
+
+# Monitoring and Logging
+sentry-sdk==1.40.6
+django-debug-toolbar==4.3.0
+
+# Testing
+pytest==8.0.2
+pytest-django==4.8.0
+factory-boy==3.3.0
+coverage==7.4.3
+
+# Development Tools
+black==24.2.0
+flake8==7.0.0
+isort==5.13.2
+
+# Production
+gunicorn==21.2.0
+whitenoise==6.6.0
+
+# Utilities
+python-slugify==8.0.4
+requests==2.31.0
+urllib3==2.2.1

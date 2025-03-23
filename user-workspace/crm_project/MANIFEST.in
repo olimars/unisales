@@ -1,0 +1,47 @@
+# Include license and readme
+include LICENSE
+include README.md
+
+# Include requirements
+include requirements.txt
+
+# Include documentation
+recursive-include docs *
+
+# Include static files and templates
+recursive-include */static *
+recursive-include */templates *
+
+# Include migrations
+recursive-include */migrations *.py
+
+# Include translation files
+recursive-include */locale *
+
+# Include configuration files
+include .env.example
+include setup.cfg
+include pytest.ini
+include tox.ini
+
+# Exclude development and test files
+exclude .gitignore
+exclude .coverage
+exclude .travis.yml
+exclude tox.ini
+recursive-exclude * __pycache__
+recursive-exclude * *.py[cod]
+recursive-exclude * *.so
+recursive-exclude tests *
+recursive-exclude */tests *
+recursive-exclude docs/_build *
+
+# Exclude development directories
+prune .git
+prune .github
+prune .pytest_cache
+prune .coverage
+prune htmlcov
+prune build
+prune dist
+prune *.egg-info
