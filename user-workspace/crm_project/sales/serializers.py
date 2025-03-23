@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from contacts.serializers import ContactSerializer, UserSerializer
+from contacts.models import Contact
 from .models import Pipeline, Stage, Opportunity, Activity
 
 class PipelineSerializer(serializers.ModelSerializer):
