@@ -26,12 +26,15 @@ class CustomUserAdmin(BaseUserAdmin):
         'username', 'email', 'first_name', 'last_name',
         'is_staff', 'get_role', 'date_joined'
     )
-    list_filter = BaseUserAdmin.list_filter + ('userprofile__role',)
+    list_filter = BaseUserAdmin.list_filter + ('profile__role',)
     
     def get_role(self, obj):
-        return obj.profile.get_role_display()
+        try:
+            return obj.profile.get_role_display()
+        except UserProfile.DoesNotExist:
+            return '-'
     get_role.short_description = 'Role'
-    get_role.admin_order_field = 'userprofile__role'
+    get_role.admin_order_field = 'profile__role'
 
 # Re-register UserAdmin
 admin.site.unregister(User)
