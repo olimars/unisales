@@ -1,0 +1,123 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: check-yaml
+    -   id: check-added-large-files
+    -   id: check-ast
+    -   id: check-json
+    -   id: check-merge-conflict
+    -   id: detect-private-key
+    -   id: double-quote-string-fixer
+    -   id: requirements-txt-fixer
+
+-   repo: https://github.com/psf/black
+    rev: 24.2.0
+    hooks:
+    -   id: black
+        language_version: python3
+        args: [--line-length=100]
+
+-   repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+    -   id: isort
+        args: [--profile=black, --line-length=100]
+
+-   repo: https://github.com/pycqa/flake8
+    rev: 7.0.0
+    hooks:
+    -   id: flake8
+        additional_dependencies: [
+            'flake8-docstrings',
+            'flake8-import-order',
+            'flake8-quotes',
+            'flake8-bugbear',
+        ]
+        args: [--max-line-length=100]
+
+-   repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.8.0
+    hooks:
+    -   id: mypy
+        additional_dependencies: [types-all]
+        args: [--ignore-missing-imports]
+
+-   repo: https://github.com/PyCQA/bandit
+    rev: 1.7.7
+    hooks:
+    -   id: bandit
+        args: ['-ll', '-i']
+
+-   repo: https://github.com/asottile/pyupgrade
+    rev: v3.15.1
+    hooks:
+    -   id: pyupgrade
+        args: [--py38-plus]
+
+-   repo: https://github.com/PyCQA/docformatter
+    rev: v1.7.5
+    hooks:
+    -   id: docformatter
+        args: [--in-place, --wrap-summaries=100]
+
+-   repo: https://github.com/asottile/add-trailing-comma
+    rev: v3.1.0
+    hooks:
+    -   id: add-trailing-comma
+
+-   repo: local
+    hooks:
+    -   id: django-test
+        name: Django Tests
+        entry: python manage.py test
+        language: system
+        types: [python]
+        pass_filenames: false
+        stages: [push]
+
+    -   id: django-check
+        name: Django System Check
+        entry: python manage.py check
+        language: system
+        types: [python]
+        pass_filenames: false
+        stages: [push]
+
+    -   id: django-check-migrations
+        name: Django Migration Check
+        entry: python manage.py makemigrations --check --dry-run
+        language: system
+        types: [python]
+        pass_filenames: false
+        stages: [push]
+
+    -   id: check-environment
+        name: Check Environment Variables
+        entry: python -c "import os; from dotenv import load_dotenv; load_dotenv(); assert all(k in os.environ for k in ['SECRET_KEY', 'DEBUG'])"
+        language: system
+        pass_filenames: false
+        stages: [push]
+
+default_language_version:
+    python: python3
+
+exclude: |
+    (?x)^(
+        migrations/.*|
+        static/.*|
+        media/.*|
+        docs/.*|
+        \.git/.*|
+        \.tox/.*|
+        \.venv/.*|
+        node_modules/.*|
+        \.coverage|
+        coverage\.xml|
+        .*\.min\.js|
+        .*\.min\.css|
+        .*\.po|
+        .*\.mo
+    )$
