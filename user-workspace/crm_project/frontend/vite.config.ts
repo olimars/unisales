@@ -9,6 +9,9 @@ export default defineConfig({
     },
   },
   server: {
+      
+    allowedHosts: ['h4pmlh-5181.csb.app'],
+     
     port: 8000,
     proxy: {
       '/api': {
